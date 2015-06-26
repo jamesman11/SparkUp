@@ -1,0 +1,88 @@
+.signup-form{
+    text-align: center;
+}
+
+.signup-form textarea{
+    resize: none;
+}
+.info{
+    position: relative;
+    display: inline-block;
+}
+
+.left{
+    position: relative;
+    width: 136px;
+    /* height: 100px; */
+    float: left;
+    text-align: center;
+}
+
+.left .image{
+    width: 90px;
+    height: 90px;
+    border: 1px grey solid;
+    position: relative;
+    margin: 0 auto;
+    background-image: url("/images/default_profile_image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 45px;
+}
+
+.left select{
+    margin-top: 10px;
+}
+
+.right{
+    margin-top: 12px;
+    float: left;
+    /* height: 100px; */
+    text-align: left;
+    margin-left: 12px;
+}
+
+.right input{
+    line-height: 28px;
+    margin-bottom: 11px;
+    width: 208px;
+}
+
+.right textarea{
+    margin: 0px;
+    height: 75px;
+    width: 209px;
+}
+
+.desc textarea, .interest textarea{
+    width: 360px;
+    margin: 0 auto;
+}
+
+.marginBot{
+    margin-bottom: 10px;
+}
+
+.signup-form .button{
+     width: 160px;
+     display: inline;
+}
+
+.signup-form .button.cancel{
+    margin-left: 20px;
+}
+
+.registration .input{
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.registration input{
+    display: inline;
+    width: 279px;
+    margin-left: 11px;
+}
+
+.registration label{
+    display: inline;
+    font-weight: 300;
+}

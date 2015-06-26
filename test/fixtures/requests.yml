@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  when: MyString
+  where: MyString
+  what: MyString
+  size: 1
+  who: MyString
+  message: MyText
+  status: MyString
+  owner_id: 1
+  repliers: MyText
+  acceptee_id: 1
+
+two:
+  when: MyString
+  where: MyString
+  what: MyString
+  size: 1
+  who: MyString
+  message: MyText
+  status: MyString
+  owner_id: 1
+  repliers: MyText
+  acceptee_id: 1

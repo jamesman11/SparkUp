@@ -16,6 +16,7 @@
 //= require understore
 //= require jquery-2.1.4
 //= require bootstrap.min
+//= require dropzone
 //= require angular.min
 //= require angular-route
 //= require angular-ui-route

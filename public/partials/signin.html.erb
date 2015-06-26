@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="css/signin.css">
+<div class="signin-form" ng-controller="signInCtrl">
+  <div class="registration marginBot">
+    <div class="input">
+      <label class="inline">Username:</label>
+      <input type="text" placeholder="username" ng-model="user_data.username" class="form-control">
+    </div>
+    <div class="input">
+      <label class="inline" \>Password:</label>
+      <input type="password" placeholder="password" ng-model="user_data.password" class="form-control">
+    </div>
+  </div>
+  <div class="buttons-group">
+    <button class="form-control btn btn-primary button" ng-click="login()">Log in</button>
+    <button class="form-control btn btn-default button cancel" ng-click="cancel()">Cancel</button>
+  </div>
+</div>

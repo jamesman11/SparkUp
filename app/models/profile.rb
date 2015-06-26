@@ -1,3 +1,4 @@
 class Profile < ActiveRecord::Base
-  belongs_to :user, :team
+  belongs_to :user
+  belongs_to :team
 end

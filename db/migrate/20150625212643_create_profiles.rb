@@ -9,7 +9,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :location
       t.text :meet_history
       t.integer :team_id
-
+      t.integer :user_id
       t.timestamps null: false
     end
   end

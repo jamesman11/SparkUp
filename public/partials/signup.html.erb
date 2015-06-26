@@ -1,1 +1,38 @@
-<h1>hahahaha</h1>
+<link rel="stylesheet" type="text/css" href="css/signup.css">
+<div class="signup-form" ng-controller="signUpCtrl">
+    <div class="info">
+        <div class="left">
+            <div class="image"></div>
+            <select class="form-control" ng-model="data.location">
+              <option value='' disabled selected style='display:none;'>Location</option>
+              <option>950 Elem</option>
+              <option>850 Cherry</option>
+              <option>860 Sunnyvale</option>
+            </select>
+        </div>
+        <div class="right">
+          <input type="text" placeholder="enter your full name" class="form-control" ng-model="data.name">
+          <textarea placeholder="Enter your job tile" class="form-control" ng-model="data.title"></textarea>
+        </div>
+    </div>
+    <div class="registration marginBot">
+      <div class="input">
+        <label class="inline">Username:</label>
+        <input type="text" placeholder="username" ng-model="user_data.username" class="form-control">
+      </div>
+      <div class="input">
+        <label class="inline" \>Password:</label>
+        <input type="password" placeholder="password" ng-model="user_data.password" class="form-control">
+      </div>
+    </div>
+    <div class="desc marginBot">
+      <textarea placeholder="One sentence to describe your daily job function. ex.'I am an engineer at Search'" ng-model="data.description" class="form-control"></textarea>
+    </div>
+    <div class="interest marginBot">
+      <textarea placeholder="Who do you want to meet? i.e Marketing, UX, Engineering" ng-model="data.interest" class="form-control"></textarea>
+    </div>
+    <div class="buttons-group">
+      <button class="form-control btn btn-primary button" ng-click="save()">Save</button>
+      <button class="form-control btn btn-default button cancel" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lunchme</title>
+      <title>SparkUp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield :stylesheet %>
 </head>
 <body ng-app="myapp">
-<%= yield :javascript %>
-<%= yield %>
-
+<%= javascript_include_tag 'app'%>
+<%= yield :main %>
 </body>
 </html>

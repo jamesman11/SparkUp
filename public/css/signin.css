@@ -1,0 +1,27 @@
+.signin-form{
+    text-align: center;
+}
+
+.registration .input{
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.registration input{
+    display: inline;
+    width: 279px;
+    margin-left: 11px;
+}
+
+.registration label {
+    display: inline;
+    font-weight: 300;
+}
+
+.signin-form .button{
+    width: 160px;
+    display: inline;
+}
+
+.signin-form .button.cancel{
+    margin-left: 20px;
+}
