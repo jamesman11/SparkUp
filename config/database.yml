@@ -1,0 +1,10 @@
+development:
+  adapter: mysql
+  database: lunchme
+  host: 127.0.0.1
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+  pool: 5
+  timeout: 5000
+  reconnect: true
