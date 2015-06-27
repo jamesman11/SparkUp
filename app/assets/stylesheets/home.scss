@@ -9,6 +9,8 @@
 body {
   padding-top: 50px;
   background-color: #f5f5f5;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
 }
 footer {
   padding-left: 15px;
@@ -69,7 +71,6 @@ footer {
 .main {
   padding: 20px;
   background-color: #fff;
-  text-align: center;
 }
 @media (min-width: 768px) {
   .main {
@@ -79,4 +80,183 @@ footer {
 }
 .main .page-header {
   margin-top: 0;
+}
+
+.main .primary-background-color {
+  background-color: rgb(128, 212, 201);
+}
+
+.main .complementary-background-color {
+  background-color: orange;
+}
+
+.main .secondary-background-color {
+  background-color: rgb(233, 234, 226);
+}
+
+#top-div {
+  display: inline-block;
+  width: 100%;
+}
+
+div.title {
+  padding: 10px 0;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+#top-div .div-container {
+  border: 1px solid rgb(179, 179, 179);
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#top-div .div-padding {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#just-joined {
+  height: 428px;
+}
+
+.just-joined-profile {
+  display: inline-block;
+  display: block;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  border: 4px solid rgb(128, 212, 201);
+  border-radius: 60px;
+  background-color: #fff;
+}
+
+.just-joined-profile .img {
+  float: left;
+  padding-right: 10px;
+}
+
+.just-joined-profile .img img {
+  height: 60px;
+  width: 60px;
+}
+
+.just-joined-profile .profile-info {
+  padding-top: 5px;
+  height: 60px;
+}
+
+.just-joined-profile .profile-info p {
+  color: rgb(81, 81, 81);
+  margin-bottom: 2px;
+}
+
+#lunch-invite {
+  height: 428px;
+}
+
+#form-lunch-invite .form-lunch-group {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-top: 0;
+}
+
+#form-lunch-invite .form-group label.control-label:first-child {
+  font-weight: normal;
+}
+
+#send-invite-message {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 10px;
+}
+
+#btn-send-invite {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#popular-team {
+  height: 200px;
+}
+
+#popular-team .list-group {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#popular-team .list-group li {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+  border-radius: 40px;
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+#monthly-bonus {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border: 0;
+}
+
+#monthly-bonus .assoc-card {
+  background-color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+#monthly-bonus .assoc-card img {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 10px;
+  z-index: 10;
+  position: relative;
+  bottom: 10px;
+}
+
+#monthly-bonus .title {
+  text-align: right;
+  color: #fff;
+  margin-right: 20px;
+  margin-top: 0;
+  padding: 0;
+}
+
+#monthly-bonus .assoc-card .intro {
+  padding-bottom: 10px;
+}
+
+#monthly-bonus .assoc-card .intro .name {
+  font-weight: bold;
+}
+
+#monthly-bonus .assoc-card .intro .role {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#monthly-bonus .assoc-card .content .tags {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#monthly-bonus .assoc-card .content .interested-at {
+  font-size: 12px;
+}
+
+#monthly-bonus .assoc-card .content .tags .tag {
+  padding: 6px;
+  border-radius: 55px;
+  color: #fff;
+}
+
+#lunch-invite textarea {
+  resize: none;
+  height: 110px;
 }

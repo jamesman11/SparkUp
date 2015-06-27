@@ -11,7 +11,8 @@ class CreateRequests < ActiveRecord::Migration
       t.integer :owner_id
       t.text :repliers
       t.integer :acceptee_id
-
+      t.integer :recipient_id
+      t.integer :recipient_type
       t.timestamps null: false
     end
   end
