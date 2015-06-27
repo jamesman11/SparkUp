@@ -1,4 +1,4 @@
-<div id="top-div" class="row" controller="MainController">
+<div id="top-div" class="row" ng-controller="mainCtrl">
   <div id="just-joined" class="div-container col-md-3 secondary-background-color ">
     <div class="title">People Just Joined</div>
     <div class="just-joined-profile" ng-repeat="profile in just_joined_profile_list">
@@ -16,7 +16,7 @@
     <div id="form-lunch-invite" class="div-padding">
       <form class="form-horizontal">
         <div class="form-group form-lunch-group">
-          <label class="col-sm-3 control-label">Location</label>
+          <label class="col-sm-3 control-label">Who</label>
           <div class="col-sm-8">
             <select ng-model="invite.selected.team" class="form-control">
               <option ng-repeat="name in invite.avl_teams">{{name}}</option>
@@ -56,7 +56,7 @@
   <div id="monthly-bonus" class="div-container div-padding col-md-4 complementary-background-color">
     <div class="title">Monthly Bonus</div>
     <div class="assoc-card">
-      <img src="http://pifeed.com/avatars/default-profile_250.jpg" class="img-circle" />
+      <img src="/images/fernando.png" class="img-circle" />
       <div class="content">
         <div class="intro">
           <div class="name">Fernando Madeira</div>
@@ -70,8 +70,8 @@
                   </span>
         </div>
         <div class="invite-buttons">
-          <button class="btn btn-default" type="submit">Lunch Him</button>
-          <button class="btn btn-default pull-right" type="submit">Coffee Him</button>
+          <!--<button class="btn btn-default" type="submit">Lunch Him</button>-->
+          <button class="form-control btn btn-primary pull-right" type="submit">Invite him</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="css/signup.css">
-<div class="profile-page" ng-controller="signUpCtrl">
-  <div class="profile">
+<link rel="stylesheet" type="text/css" href="css/profile.css">
+<div class="profile-page">
+  <div class="profile" ng-controller="profileCtrl">
     <div class="info-main">
       <div class="info">
         <div class="left">
@@ -49,20 +49,10 @@
     </div>
   </div>
   <div class="upcoming-lunch">
-    <div class="message1">User Sign Up</div>
-    <div class="registration">
-      <div class="input">
-        <label class="inline">Username:</label>
-        <input type="text" placeholder="username" ng-model="user_data.username" class="form-control">
-      </div>
-      <div class="input">
-        <label class="inline" \>Password:</label>
-        <input type="password" placeholder="password" ng-model="user_data.password" class="form-control">
-      </div>
-      <div class="input">
-        <label class="inline" \>Confirm:</label>
-        <input type="password" style="margin-left: 24px" placeholder="repeat again" class="form-control">
-      </div>
+    <div class="message1">Your upcoming lunch</div>
+    <div class="actions">
+      <span>Looks like you haven't got any lunch yet</span>
+      <button class="form-control btn btn-primary button">Schedule a lunch!</button>
     </div>
   </div>
 </div>

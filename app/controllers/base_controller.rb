@@ -8,7 +8,8 @@ class BaseController < ApplicationController
   end
 
   def current_user
-    @current_user = session[:user_id].nil? ? nil : User.find(session[:user_id])
+    id = session[:user_id].nil? ? 1 : session[:user_id]
+    @current_user = User.find(id)
     @current_user
   end
 end

@@ -17,29 +17,79 @@ myapp.config(function($stateProvider, $urlRouterProvider){
             templateUrl: "partials/main.html.erb",
             controller: mainCtrl
         })
+        .state('profile',{
+            url: "/profile",
+            templateUrl: "partials/profile.html.erb",
+            controller: profileCtrl
+        })
 });
-myapp.controller('signUpCtrl', signUpCtrl).controller('signInCtrl',signInCtrl).controller('mainCtrl', mainCtrl);
+myapp.controller('signUpCtrl', signUpCtrl)
+     .controller('signInCtrl',signInCtrl)
+     .controller('mainCtrl', mainCtrl)
+     .controller('userCtrl', userCtrl)
+     .controller('profileCtrl', profileCtrl);
+function profileCtrl($scope, $location){
+    $scope.data = gon.profile;
+    $scope.tags = ["User Experience","Marketing", "Engineering", "Human Resource", "Operation", "Merchandising"];
+    $scope.selected_tags = $scope.data.interest ? $scope.data.interest.split(',') : [];
+    $scope.addInterest = function(context){
+        $scope.selected_tags.push(context.tag);
+    };
+    $scope.removeInterest = function($index){
+        $scope.selected_tags.splice($index, 1);
+    };
+    $scope.cancel = function(){
+        $location.path('/main');
+    };
+    $scope.save = function(){
+        if($scope.selected_tags !== 0){
+            $scope.data.interest = $scope.selected_tags.join(',');
+        }
+        $.ajax({
+            url: "/profile/" + $scope.data.id,
+            type: "PUT",
+            dataType: "json",
+            data: {
+                data: $scope.data
+            },
+            success: function(data){
+                alert('profile saved!');
+            }
+        })
+    };
+}
+function userCtrl($scope, $location){
+    $scope.is_user_sign_in = gon.current_user ? true : false;
+    $scope.profile = function(){
+      $location.path('profile');
+    };
+    $scope.welcome_message = function(){
+        var name = gon.profile.name.split(" ")[0];
+        var str = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+        return "Hello, " + str;
+    }
+}
 function mainCtrl($scope, $location){
     $scope.just_joined_profile_list = [
         {
-            name: 'James',
-            role: 'MaiMeng Specialist',
-            image_url: 'http://pubpages.unh.edu/~ltp6/Project_3/cute-dog2.jpg'
+            name: 'James Man',
+            role: 'Sr Software Engineer',
+            image_url: '/images/jamesman.jpg'
         },
         {
-            name: 'Xinxin',
-            role: 'Application Dev',
-            image_url: 'http://pifeed.com/avatars/default-profile_250.jpg'
+            name: 'Xinxin Dai',
+            role: 'Sr Software Engineer',
+            image_url: '/images/xinxin.png'
         },
         {
-            name: 'Hello',
-            role: 'Application Dev',
-            image_url: 'http://pifeed.com/avatars/default-profile_250.jpg'
+            name: 'Cici Liu',
+            role: 'ItemSetup Manager',
+            image_url: '/images/cici.png'
         },
         {
-            name: 'World',
-            role: 'Application Dev',
-            image_url: 'http://pifeed.com/avatars/default-profile_250.jpg'
+            name: 'Zhaochang He',
+            role: 'UX Designer',
+            image_url: '/images/xiaozhao.jpg'
         }
     ];
 
@@ -125,21 +175,32 @@ function signInCtrl($scope, $location){
     }
 }
 function signUpCtrl($scope, $location){
-    $scope.initialize = function () {
-        $scope.data ={
-            location : "",
-            name : "",
-            title : "",
-            description : "",
-            interest : ""
-        },
-        $scope.user_data = {
-            username : "",
-            password : ""
-        }
+    $scope.data ={
+        location : "",
+        name : "",
+        title : "",
+        description : "",
+        interest : ""
+    },
+    $scope.user_data = {
+        username : "",
+        password : ""
+    },
+    $scope.tags = ["User Experience","Marketing", "Engineering", "Human Resource", "Operation", "Merchandising"];
+    $scope.selected_tags = $scope.data.interest ? $scope.data.interest.split(',') : [];
+    $scope.addInterest = function(context){
+        $scope.selected_tags.push(context.tag);
     };
-
+    $scope.removeInterest = function($index){
+        $scope.selected_tags.splice($index, 1);
+    };
+    $scope.cancel = function(){
+        $location.path('/main');
+    };
     $scope.save = function(){
+        if($scope.selected_tags !== 0){
+            $scope.data.interest = $scope.selected_tags.join(',');
+        }
         $.ajax({
             url: "/user",
             type: "POST",
@@ -155,5 +216,5 @@ function signUpCtrl($scope, $location){
     };
     $scope.cancel = function(){
         $location.path('/main');
-    }
+    };
 };
