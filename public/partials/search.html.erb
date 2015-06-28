@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="css/search.css">
+<div>
+  <ul id="req-list" class="list-group">
+    <li>Matched Profiles</li>
+    <li class="list-group-item req-item" ng-repeat="profile in profiles track by $index">
+      <span ng-show="profiles.length === 0">You haven't received any requests</span>
+      <div class="req-container clearfix">
+        <div class="person-info clearfix">
+          <img ng-src={{profile.avatar}} class="img-circle" />
+          <div class="profile-info pull-left">
+            <p>{{profile.name}}</p>
+            <p>{{profile.title}}</p>
+          </div>
+          <div class="tags pull-left">
+            <span class="tag complementary-background-color">EG</span>
+            <span class="tag complementary-background-color">UX</span>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="request-actions">
+            <button class="btn btn-primary" ng-click="accept($index)">Invite</button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <ul id="req-list" class="list-group">
+    <li>Matched Teams</li>
+    <li class="list-group-item req-item" ng-repeat="team in teams track by $index">
+      <span ng-show="teams.length === 0">You haven't received any requests</span>
+      <div class="req-container clearfix">
+        <div class="person-info clearfix">
+          <img ng-src="/images/walmart.png" class="img-circle" />
+          <div class="profile-info pull-left">
+            <p>{{team.name}}</p>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="request-actions">
+            <button class="btn btn-primary" ng-click="accept($index)">Invite</button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

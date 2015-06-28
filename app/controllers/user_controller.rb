@@ -32,4 +32,12 @@ class UserController < BaseController
     session[:user_id] = nil
     render :json => true
   end
+
+  def search
+    text = params[:text]
+    profiles = Profile.where('name LIKE ? or title LIKE ? or interest LIKE ?', "%#{text}%","%#{text}%","%#{text}%")
+    teams = Team.where('name LIKE ? or description LIKE ?', "%#{text}%","%#{text}%")
+    results = { :profiles => profiles, :teams => teams}
+    render :json => results, :status => 200
+  end
 end

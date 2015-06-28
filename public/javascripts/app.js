@@ -31,6 +31,11 @@ myapp.config(function($stateProvider, $urlRouterProvider){
             url: "/org",
             templateUrl: "partials/org.html.erb"
         })
+        .state('search', {
+            url: "/search/:text",
+            templateUrl: "partials/search.html.erb",
+            controller: searchCtrl
+        })
         .state('inbox', {
             url: "/inbox",
             abstract: true,
@@ -66,8 +71,19 @@ myapp.controller('signUpCtrl', signUpCtrl)
      .controller('InboxController', inboxController)
      .controller('RequestSentController', requestSentController)
      .controller('RequestReceivedController', requestReceivedController)
-     .controller('teamCtrl',teamCtrl);
-
+     .controller('teamCtrl',teamCtrl)
+     .controller('searchCtrl', searchCtrl);
+function searchCtrl($scope, $location, $stateParams,$http){
+    var text = $stateParams.text;
+    $http.post('/user/search', {text:text}).
+        success(function(data, status, headers, config) {
+            $scope.init(data);
+        });
+    $scope.init = function(data){
+        $scope.teams = data.teams;
+        $scope.profiles = data.profiles;
+    }
+}
 function teamCtrl($scope, $location){
     $scope.teams = gon.teams;
     $scope.getNumbers = function(team){
@@ -171,7 +187,7 @@ function profileCtrl($scope, $location){
         })
     };
 }
-function userCtrl($scope, $location){
+function userCtrl($scope, $location, $state){
     $scope.is_user_sign_in = gon.current_user ? true : false;
     $scope.profile_image_url = gon.profile.avatar;
     $scope.profile = function(){
@@ -192,7 +208,27 @@ function userCtrl($scope, $location){
                 alert('Sign out success');
             }
         })
-    }
+    };
+    $scope.keyupHandler = function($event){
+        if($event.keyCode == 13){
+            var text = $($event.currentTarget).val();
+            $location.path('/search/' + text);
+            //$.ajax({
+            //    url: "/user/search",
+            //    type: "POST",
+            //    data : {
+            //        text : text
+            //    },
+            //    success: function(data){
+            //       if(data.profiles.length ===0 && data.teams.length === 0){
+            //           alert('nothing match');
+            //       }else{
+            //
+            //       }
+            //    }
+            //})
+        }
+    };
 }
 function mainCtrl($scope, $location){
     $scope.just_joined_profile_list = [
