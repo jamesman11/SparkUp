@@ -31,6 +31,7 @@ gem 'rails-assets-angular-cache'
 gem 'rails-assets-angular-ui-router'
 gem 'rails-assets-angular-translate'
 gem 'byebug'
+gem "mail"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

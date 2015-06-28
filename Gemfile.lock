@@ -173,6 +173,7 @@ DEPENDENCIES
   gon
   jbuilder (~> 2.0)
   jquery-rails
+  mail
   mysql
   paperclip (~> 4.2)
   rails (= 4.2.1)

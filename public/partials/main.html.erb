@@ -1,88 +1,96 @@
-<div id="top-div" class="row" ng-controller="mainCtrl">
-  <div id="just-joined" class="div-container col-md-3 secondary-background-color ">
-    <div class="title">People Just Joined</div>
-    <div class="just-joined-profile" ng-repeat="profile in just_joined_profile_list">
-      <div class="img">
-        <img src="{{profile.image_url}}" class="img-circle" />
-      </div>
-      <div class="profile-info clearfix">
-        <p>{{profile.name}}</p>
-        <p>{{profile.role}}</p>
+<div ng-controller="mainCtrl">
+  <div id="top-div" class="row">
+    <div id="just-joined" class="div-container col-md-3 secondary-background-color ">
+      <div class="title">People Just Joined</div>
+      <div class="just-joined-profile" ng-repeat="profile in just_joined_profile_list">
+        <div class="img">
+          <img src="{{profile.image_url}}" class="img-circle" />
+        </div>
+        <div class="profile-info clearfix">
+          <p>{{profile.name}}</p>
+          <p>{{profile.role}}</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="lunch-invite" class="div-container col-md-4">
-    <div class="title primary-background-color">Create A Lunch Invite</div>
-    <div id="form-lunch-invite" class="div-padding">
-      <form class="form-horizontal">
-        <div class="form-group form-lunch-group">
-          <label class="col-sm-3 control-label">Who</label>
-          <div class="col-sm-8">
-            <select ng-model="invite.selected.team" class="form-control">
-              <option ng-repeat="team in invite.avl_teams track by $index">{{team.name}}</option>
-            </select>
+    <div id="lunch-invite" class="div-container col-md-4">
+      <div class="title primary-background-color">Create A Lunch Invite</div>
+      <div id="form-lunch-invite" class="div-padding">
+        <form class="form-horizontal">
+          <div class="form-group form-lunch-group">
+            <label class="col-sm-3 control-label" style="left: -17px">Team</label>
+            <div class="col-sm-8">
+              <select ng-model="invite.selected.team" class="form-control">
+                <option ng-repeat="team in invite.avl_teams track by $index">{{team.name}}</option>
+              </select>
+            </div>
           </div>
-        </div>
 
 
-        <div class="form-group form-lunch-group">
-          <label class="col-sm-3 control-label">When</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control" ng-model="invite.selected.time" placeholder="12-5pm">
+          <div class="form-group form-lunch-group">
+            <label class="col-sm-3 control-label" style="left: -21px;">Time</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="invite.selected.time" placeholder="lunch date/time">
+            </div>
           </div>
-        </div>
 
-        <div class="form-group form-lunch-group">
-          <label class="col-sm-3 control-label">Where</label>
-          <div class="col-sm-6">
-            <select ng-model="invite.selected.loc" class="form-control" style="width: 205px;">
-              <option ng-repeat="loc in invite.avl_loc">{{loc}}</option>
-            </select>
+          <div class="form-group form-lunch-group">
+            <label class="col-sm-3 control-label">Location</label>
+            <div class="col-sm-6">
+              <select ng-model="invite.selected.loc" class="form-control">
+                <option ng-repeat="loc in invite.avl_loc">{{loc}}</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group form-lunch-group">
-          <label class="col-sm-3 control-label">Message</label>
-          <div class="col-sm-8">
-            <textarea type="text" class="form-control" ng-model="invite.selected.message" placeholder="Short message..."></textarea>
+          <div class="form-group form-lunch-group">
+            <label class="col-sm-3 control-label">Message</label>
+            <div class="col-sm-8">
+              <textarea type="text" class="form-control" ng-model="invite.selected.message" placeholder="Anything you want to say to the team you are interested in (Max 30 words)"></textarea>
+            </div>
           </div>
-        </div>
 
-        <div id="send-invite-message">Anyone from this deparment can see your invite</div>
-        <button id="btn-send-invite" type="button" class="btn primary-background-color" ng-click="submitInvite()">Send Invite</button>
-      </form>
+          <div id="send-invite-message">Your lunch request will go to public invites boards. It is visible to everyone, but only associates in team you selected can accept</div>
+          <button id="btn-send-invite" type="button" class="btn primary-background-color" ng-click="submitInvite()">Send Invite</button>
+        </form>
+      </div>
     </div>
-  </div>
-  <div id="monthly-bonus" class="div-container div-padding col-md-4 complementary-background-color">
-    <div class="title">Monthly Bonus</div>
-    <div class="assoc-card">
-      <img src="/images/fernando.png" class="img-circle" />
-      <div class="content">
-        <div class="intro">
-          <div class="name">Fernando Madeira</div>
-          <div class="role">President & CEO</div>
-          <div class="intro">I am one of the judge of Walmart Hack day</div>
-        </div>
-        <div class="tags">
-          <span class="interested-at">Interested to meet people at</span>
+    <div id="monthly-bonus" class="div-container div-padding col-md-4 complementary-background-color">
+      <div class="title">Monthly Bonus</div>
+      <div class="assoc-card">
+        <img ng-src="{{mthBonus.img}}" class="img-circle" />
+        <div class="content">
+          <div class="intro">
+            <div class="name">{{mthBonus.name}}</div>
+            <div class="role">{{mthBonus.role}}</div>
+            <div class="intro">{{mthBonus.intro}}</div>
+          </div>
+          <div class="tags">
+            <span class="interested-at">Interested to meet people at</span>
                   <span>
                     <span class="tag complementary-background-color">EG</span>
                   </span>
-        </div>
-        <div class="invite-buttons">
-          <!--<button class="btn btn-default" type="submit">Lunch Him</button>-->
-          <button class="form-control btn btn-primary pull-right" type="submit">Invite Fernando</button>
+          </div>
+          <div class="invite-buttons">
+            <!--<button class="btn btn-default" type="submit">Lunch Him</button>-->
+            <button class="form-control btn btn-primary pull-right" type="submit" ng-click="pInv.initInvite(mthBonus)">Invite Fernando</button>
+          </div>
         </div>
       </div>
+
+    </div>
+    <div id="popular-team" class="div-container div-padding col-md-4 secondary-background-color ">
+      <div class="title">Most Popular Team<button class="btn btn-primary">see all</button></div>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="team in popular_team_list">
+          <img class="logo" src="/images/walmart.png">
+          <span class="badge">{{team.num_of_invite}}</span>
+          {{team.name}}
+        </li>
+      </ul>
     </div>
   </div>
-  <div id="popular-team" class="div-container div-padding col-md-4 secondary-background-color ">
-    <div class="title">Most Popular Team</div>
-    <ul class="list-group">
-      <li class="list-group-item" ng-repeat="team in popular_team_list">
-        <span class="badge">{{team.num_of_invite}}</span>
-        {{team.name}}
-      </li>
-    </ul>
+  <div id="bottom-div" class="row">
+    <div class="title pull-left">Public Invites</div>
+    <div ng-repeat=""></div>
   </div>
 </div>

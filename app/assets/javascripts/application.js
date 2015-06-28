@@ -20,3 +20,4 @@
 //= require angular.min
 //= require angular-route
 //= require angular-ui-route
+//= require ui-bootstrap.min

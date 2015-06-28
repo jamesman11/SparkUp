@@ -121,6 +121,18 @@ div.title {
   color: #777777;
 }
 
+div.title button{
+  background-color: #4c4b4a;
+  color: white;
+  border: 1px solid transparent;
+  margin-left: 10px;
+}
+
+div.title button:hover{
+  background-color: #f5f8fe;
+  color: #4c4b4a;
+}
+
 #top-div .div-container {
   border: 1px solid rgb(179, 179, 179);
   padding-left: 15px;
@@ -135,7 +147,7 @@ div.title {
 }
 
 #just-joined {
-  height: 428px;
+  height: 410px;
 }
 
 .just-joined-profile {
@@ -170,13 +182,25 @@ div.title {
 }
 
 #lunch-invite {
-  height: 428px;
+  height: 410px;
 }
 
+#form-lunch-invite{
+  position: relative;
+  top: 10px;
+}
 #form-lunch-invite .form-lunch-group {
   margin-top: 12px;
   margin-bottom: 12px;
   padding-top: 0;
+}
+
+#form-lunch-invite .form-lunch-group select{
+  width: 220px;
+}
+
+#form-lunch-invite .form-lunch-group input{
+  width: 220px;
 }
 
 #form-lunch-invite .form-group label.control-label:first-child {
@@ -186,7 +210,8 @@ div.title {
 #send-invite-message {
   padding: 10px 0;
   text-align: center;
-  font-size: 10px;
+  font-size: 11px;
+  color: #b3b3b3;
 }
 
 #btn-send-invite {
@@ -195,12 +220,21 @@ div.title {
 }
 
 #popular-team {
-  height: 200px;
+  height: 182px;
 }
 
 #popular-team .list-group {
   padding-left: 30px;
   padding-right: 30px;
+  position: relative;
+  bottom: 10px;
+}
+
+#popular-team .list-group .logo{
+  width: 15px;
+  height: 15px;
+  position: relative;
+  bottom: 2px;
 }
 
 #popular-team .list-group li {
@@ -209,6 +243,15 @@ div.title {
   margin-bottom: 8px;
   border-radius: 40px;
   box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+#popular-team .title{
+  padding: 10px 0;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: #777777;
 }
 
 #monthly-bonus {
@@ -295,7 +338,9 @@ div.title {
 
 #lunch-invite textarea {
   resize: none;
-  height: 110px;
+  height: 60px;
+  width: 220px;
+  font-size: 11px;
 }
 
 .user_profile_right{
@@ -330,3 +375,43 @@ div.title {
 .user_profile_right .signout-link{
   cursor: pointer;
 }
+
+
+div.modal-pInv {
+  width: 400px;
+}
+
+div.modal-pInv .modal-content {
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 4px solid #80d4c9;
+}
+
+div.modal-pInv .modal-header {
+  border-bottom: none;
+}
+
+div.modal-pInv h4.modal-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+div.modal-pInv .just-joined-profile {
+  border: none;
+  padding: 15px 20px;
+}
+
+#bottom-div{
+  border: 1px solid #ccc;
+  width: 1089px;
+  height: 300px;
+  margin-left: 0px;
+}
+
+#bottom-div .title{
+  background-color: #f7c15e;
+  padding: 5px;
+  left: 10px;
+  position: relative;
+}
+

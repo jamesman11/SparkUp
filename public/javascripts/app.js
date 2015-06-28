@@ -1,4 +1,4 @@
-var myapp = angular.module('myapp', ["ui.router"]);
+var myapp = angular.module('myapp', ["ui.router","ui.bootstrap"]);
 myapp.config(function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise("/main");
     $stateProvider
@@ -72,7 +72,48 @@ myapp.controller('signUpCtrl', signUpCtrl)
      .controller('RequestSentController', requestSentController)
      .controller('RequestReceivedController', requestReceivedController)
      .controller('teamCtrl',teamCtrl)
-     .controller('searchCtrl', searchCtrl);
+     .controller('searchCtrl', searchCtrl)
+     .controller('PInvModalController', pInvModalController);
+
+function pInvModalController($scope, $modalInstance, invInfo, avlLoc) {
+    $scope.pInv = {
+        info: {},
+        avlLoc: avlLoc
+    };
+
+    $scope.pInv.info = invInfo;
+
+    $scope.pInv.submitInvite = function(){
+        var data = $scope.pInv.info;
+        console.log(data);
+
+        $.ajax({
+            url: "/request",
+            type: "POST",
+            dataType: "json",
+            data: {
+                data: {
+                    who: data.team,
+                    when: data.time,
+                    where: data.loc,
+                    recipient_id: data.pid,
+                    message : data.message,
+                    owner_id: gon.current_user.id
+                }
+            },
+            success: function(data){
+                console.log(data);
+                $scope.pInv.info = {};
+                $scope.pInv.closeModal;
+            }
+        })
+    };
+
+    $scope.pInv.closeModal = function(){
+        $modalInstance.dismiss('cancel');
+    }
+}
+
 function searchCtrl($scope, $location, $stateParams,$http){
     var text = $stateParams.text;
     $http.post('/user/search', {text:text}).
@@ -213,24 +254,10 @@ function userCtrl($scope, $location, $state){
         if($event.keyCode == 13){
             var text = $($event.currentTarget).val();
             $location.path('/search/' + text);
-            //$.ajax({
-            //    url: "/user/search",
-            //    type: "POST",
-            //    data : {
-            //        text : text
-            //    },
-            //    success: function(data){
-            //       if(data.profiles.length ===0 && data.teams.length === 0){
-            //           alert('nothing match');
-            //       }else{
-            //
-            //       }
-            //    }
-            //})
         }
     };
 }
-function mainCtrl($scope, $location){
+function mainCtrl($scope, $location, $modal){
     $scope.just_joined_profile_list = [
         {
             name: 'James Man',
@@ -285,7 +312,13 @@ function mainCtrl($scope, $location){
             message: ''
         }
     };
-
+    $scope.mthBonus = {
+        img: '/images/fernando.png',
+        name: 'Fernando Madeira',
+        role: 'President & CEO',
+        intro: 'I am one of the judge of Walmart Hack day',
+        pid: 3
+    };
     $scope.submitInvite = function(){
         var data = $scope.invite.selected;
         $.ajax({
@@ -311,7 +344,34 @@ function mainCtrl($scope, $location){
                 alert('public invite sent!');
             }
         })
-    }
+    };
+
+    $scope.pInv = {};
+    $scope.pInv.initInvite = function (pInfo) {
+        var info = {};
+
+        info.img = pInfo.img;
+        info.pid = pInfo.pid;
+        info.name = pInfo.name;
+        info.role = pInfo.role;
+
+        $modal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: '/partials/pinvite-modal.html.erb',
+            controller: pInvModalController,
+            size: 'pInv',
+            resolve: {
+                invInfo: function () {
+                    return info;
+                },
+
+                avlLoc: function(){
+                    return $scope.invite.avl_loc;
+                }
+            }
+        });
+    };
+
 
 };
 function signInCtrl($scope, $location){
