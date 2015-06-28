@@ -1,0 +1,9 @@
+<link rel="stylesheet" type="text/css" href="css/team.css">
+<ul id="req-list" class="list-group">
+  <li class="list-group-item req-item team" ng-repeat="team in teams track by $index">
+    <img class="walmart" src="/images/walmart.png"></i>
+    <span> {{team.name}} </span>
+    <img ng-repeat="i in getNumbers(team) track by $index" src="/images/jamesman.jpg">
+    <a class="status-msg ng-binding pull-right" href="#org">See all asssociates</a>
+  </li>
+</ul>

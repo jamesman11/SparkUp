@@ -1,0 +1,26 @@
+.team{
+    padding: 25px;
+}
+
+.team .walmart{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    bottom: 3px;
+    left: 6px;
+}
+
+.team a{
+    cursor: pointer;
+}
+.team span{
+    font-size: 18px;
+    color: rgb(152, 151, 151);
+}
+
+.team img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-right: 6px;
+}

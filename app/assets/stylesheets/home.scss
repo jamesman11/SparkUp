@@ -70,9 +70,10 @@ footer {
   background-image: url("/images/logo.png");
   background-size: cover;
   width: 175px;
-  height: 50px;
+  height: 52px;
   position: relative;
   left: -12px;
+  cursor: pointer;
 }
 
 #sidebar{
@@ -216,6 +217,15 @@ div.title {
   height: 228px;
 }
 
+.user_signin_signup{
+  position: relative;
+  top: 18px;
+  margin-right: 9px;
+}
+
+.user_signin_signup a{
+  color: #ffffff;
+}
 #monthly-bonus .assoc-card {
   background-color: #fff;
   padding-left: 10px;
@@ -268,6 +278,10 @@ div.title {
 #monthly-bonus .invite-buttons button{
   background-color: #1CB5A2;
   border-color: #77CCE5;
+  width: auto;
+  left: 20px;
+  bottom: 11px;
+  position: relative;
 }
 #monthly-bonus .assoc-card .content .interested-at {
   font-size: 12px;

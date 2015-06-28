@@ -1,0 +1,9 @@
+<link rel="stylesheet" type="text/css" href="css/inbox.css">
+
+<div id="inbox-container">
+  <ul id="inbox-nav" class="nav nav-pills">
+    <li role="presentation" ng-click="nav.clicked(false);" ng-class="nav.reqClass"><a ui-sref="inbox.rcv">Request Received</a></li>
+    <li role="presentation" ng-click="nav.clicked(true);" ng-class="nav.sentClass"><a ui-sref="inbox.sent">Request Sent</a></li>
+  </ul>
+  <ui-view name="request"></ui-view>
+</div>

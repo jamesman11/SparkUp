@@ -22,12 +22,125 @@ myapp.config(function($stateProvider, $urlRouterProvider){
             templateUrl: "partials/profile.html.erb",
             controller: profileCtrl
         })
+        .state('team', {
+            url: "/team",
+            templateUrl: "partials/team.html.erb",
+            controller: teamCtrl
+        })
+        .state('org', {
+            url: "/org",
+            templateUrl: "partials/org.html.erb"
+        })
+        .state('inbox', {
+            url: "/inbox",
+            abstract: true,
+            templateUrl: "partials/inbox.html.erb",
+            controller: inboxController
+        })
+        .state('inbox.sent', {
+            url: '/sent',
+            views: {
+                'request': {
+                    templateUrl: 'partials/inbox_sent.html.erb',
+                    controller: requestSentController
+                }
+            }
+        })
+        .state('inbox.rcv', {
+            url: '/rcv',
+            views: {
+                'request': {
+                    templateUrl: 'partials/inbox_rcv.html.erb',
+                    controller: requestReceivedController
+                }
+            }
+        });
+
 });
 myapp.controller('signUpCtrl', signUpCtrl)
      .controller('signInCtrl',signInCtrl)
+     .controller('headerCtrl',headerCtrl)
      .controller('mainCtrl', mainCtrl)
      .controller('userCtrl', userCtrl)
-     .controller('profileCtrl', profileCtrl);
+     .controller('profileCtrl', profileCtrl)
+     .controller('InboxController', inboxController)
+     .controller('RequestSentController', requestSentController)
+     .controller('RequestReceivedController', requestReceivedController)
+     .controller('teamCtrl',teamCtrl);
+
+function teamCtrl($scope, $location){
+    $scope.teams = gon.teams;
+    $scope.getNumbers = function(team){
+        var array = new Array(team.members_count);
+        for(var i = 0;i>array.length;i++) array[i]= 1;
+        return array;
+    };
+    $scope.org = function(){
+        $location.path('/org');
+    }
+}
+function inboxController($scope, $location) {
+    var isReq = $location.path() === "/inbox/sent" ? false : true;
+    $scope.nav = {
+        sentClass: isReq ? '' : 'active',
+        reqClass: isReq ? 'active' : ''
+    }
+
+    $scope.nav.clicked = function(sentPage) {
+        $scope.nav.sentClass = sentPage ? 'active' : '';
+        $scope.nav.reqClass = sentPage ? '' : 'active';
+    }
+};
+
+function requestSentController($scope) {
+    var NO_RESPONSE_MESSAGE = "No Response Yet";
+    var DECLINE_MESSAGE = "Declined";
+    var ACCEPT_MESSAGE = "Accepted";
+    $scope.requests = gon.sent_requests;
+    $scope.msgClass = function($index){
+        var request = $scope.requests[$index];
+        if(request.status == NO_RESPONSE_MESSAGE) return "";
+        return request.status == ACCEPT_MESSAGE ? {"color": "rgb(128, 212, 161)" } : {"color": "#fc7b89" };
+    }
+};
+
+function requestReceivedController($scope) {
+    var NO_RESPONSE_MESSAGE = "No Response Yet";
+    var DECLINE_MESSAGE = "Declined";
+    var ACCEPT_MESSAGE = "Accepted";
+    $scope.requests = gon.all_request;
+    $scope.is_no_response = function($index){
+        var request = $scope.requests[$index];
+        return request.status == NO_RESPONSE_MESSAGE;
+    };
+    $scope.msgClass = function($index){
+        var request = $scope.requests[$index];
+        return request.status == ACCEPT_MESSAGE ? {"color": "rgb(128, 212, 161)" } : {"color": "#fc7b89" };
+    }
+    $scope.removeRequest = function($index){
+        var request = $scope.requests[$index];
+        $.ajax({
+            url: "request/decline/" + request.id,
+            type: "POST",
+            success: function(){
+                request.status = DECLINE_MESSAGE;
+                $scope.$apply();
+            }
+        })
+    };
+    $scope.accept = function($index){
+        var request = $scope.requests[$index];
+        $.ajax({
+            url: "request/accept/" + request.id,
+            type: "POST",
+            success: function(){
+                request.status = ACCEPT_MESSAGE;
+                $scope.$apply();
+            }
+        })
+    };
+}
+
 function profileCtrl($scope, $location){
     $scope.data = gon.profile;
     $scope.tags = ["User Experience","Marketing", "Engineering", "Human Resource", "Operation", "Merchandising"];
@@ -60,6 +173,7 @@ function profileCtrl($scope, $location){
 }
 function userCtrl($scope, $location){
     $scope.is_user_sign_in = gon.current_user ? true : false;
+    $scope.profile_image_url = gon.profile.avatar;
     $scope.profile = function(){
       $location.path('profile');
     };
@@ -67,6 +181,17 @@ function userCtrl($scope, $location){
         var name = gon.profile.name.split(" ")[0];
         var str = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
         return "Hello, " + str;
+    };
+    $scope.signout = function(){
+        $.ajax({
+            url: "/user/sign_out",
+            type: "POST",
+            success: function(data){
+                $scope.is_user_sign_in = false;
+                $scope.$apply();
+                alert('Sign out success');
+            }
+        })
     }
 }
 function mainCtrl($scope, $location){
@@ -109,12 +234,12 @@ function mainCtrl($scope, $location){
     ];
 
     $scope.invite = {
-        avl_teams: [
-            'User Experience Team'
-        ],
+        avl_teams: gon.teams,
         avl_loc: [
-            'San Bruno Cafe',
-            'Sunnyvale Cafe'
+            '950 Elm San Bruno',
+            '850 Cherry San Bruno',
+            '640 California Sunnyvale',
+            '860 California Sunnyvale'
         ],
 
         selected: {
@@ -137,11 +262,17 @@ function mainCtrl($scope, $location){
                     when: data.time,
                     where: data.loc,
                     message : data.message,
-                    owner_id: '1'
+                    owner_id: gon.current_user.id
                 }
             },
             success: function(data){
-                alert('sign up success');
+                $scope.invite.selected = {
+                    team: '',
+                    time: '',
+                    loc: '',
+                    message: ''
+                }
+                alert('public invite sent!');
             }
         })
     }
@@ -155,6 +286,7 @@ function signInCtrl($scope, $location){
         }
     };
     $scope.login = function(){
+        var location = $location;
         $.ajax({
             url: "/user/login",
             type: "POST",
@@ -163,7 +295,8 @@ function signInCtrl($scope, $location){
                 user_data: $scope.user_data
             },
             success: function(data){
-                alert('sign up success');
+                location.path('/main');
+                $scope.$apply();
             },
             error: function(){
                 alert('login failures');
@@ -218,3 +351,9 @@ function signUpCtrl($scope, $location){
         $location.path('/main');
     };
 };
+
+function headerCtrl($scope,$location){
+    $scope.home = function(){
+        $location.path('main');
+    }
+}

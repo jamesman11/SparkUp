@@ -21,7 +21,15 @@ class UserController < BaseController
       render :text => "Internal server error.", :status => 500
     else
       session[:user_id] = user.first.id
+      @current_user = user.first
+      gon.profile = current_user.profile
+      gon.current_user = current_user
       render :json => true
     end
+  end
+
+  def sign_out
+    session[:user_id] = nil
+    render :json => true
   end
 end

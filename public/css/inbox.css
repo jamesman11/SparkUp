@@ -1,0 +1,71 @@
+#inbox-container {
+    height: 500px;
+    background-color: #fff;
+}
+
+#inbox-nav {
+    margin-bottom: 20px;
+}
+
+#req-list {
+
+}
+
+#req-list .req-container .person-info img {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-right: 10px;
+}
+
+#req-list .req-container .person-info .profile-info {
+    padding-top: 5px;
+    height: 60px;
+}
+
+#req-list .req-container .person-info .profile-info p {
+    color: rgb(81, 81, 81);
+    margin-bottom: 2px;
+}
+
+#req-list .req-container .person-info .tags {
+    padding: 16px 20px;
+}
+
+#req-list .req-container .person-info .tags .tag {
+    padding: 8px;
+    border-radius: 70px;
+    color: #fff;
+}
+
+#req-list .req-container .person-info .req-detail {
+    padding-top: 18px;
+}
+
+#req-list .req-container .person-info .req-detail span {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#req-list .req-container .req-msg {
+    padding-top: 10px;
+}
+
+#req-list .status {
+    z-index: 10;
+    position: relative;
+    bottom: 55px;
+    right: 20px;
+}
+
+#req-list .status .status-msg {
+    font-weight: bold;
+}
+
+#req-list .status .status-msg.decline{
+    color: red;
+}
+
+#req-list .status .status-msg.accept{
+    color: green;
+}

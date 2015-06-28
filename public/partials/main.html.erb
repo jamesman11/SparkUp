@@ -19,7 +19,7 @@
           <label class="col-sm-3 control-label">Who</label>
           <div class="col-sm-8">
             <select ng-model="invite.selected.team" class="form-control">
-              <option ng-repeat="name in invite.avl_teams">{{name}}</option>
+              <option ng-repeat="team in invite.avl_teams track by $index">{{team.name}}</option>
             </select>
           </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group form-lunch-group">
           <label class="col-sm-3 control-label">Where</label>
           <div class="col-sm-6">
-            <select ng-model="invite.selected.loc" class="form-control">
+            <select ng-model="invite.selected.loc" class="form-control" style="width: 205px;">
               <option ng-repeat="loc in invite.avl_loc">{{loc}}</option>
             </select>
           </div>
@@ -71,7 +71,7 @@
         </div>
         <div class="invite-buttons">
           <!--<button class="btn btn-default" type="submit">Lunch Him</button>-->
-          <button class="form-control btn btn-primary pull-right" type="submit">Invite him</button>
+          <button class="form-control btn btn-primary pull-right" type="submit">Invite Fernando</button>
         </div>
       </div>
     </div>

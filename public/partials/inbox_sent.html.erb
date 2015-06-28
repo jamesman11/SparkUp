@@ -1,0 +1,27 @@
+<div>
+  <ul id="req-list" class="list-group">
+    <li class="list-group-item req-item" ng-repeat="request in requests track by $index">
+      <div class="req-container clearfix">
+        <div class="person-info clearfix">
+          <img ng-src="{{request.profile.avatar}}" class="img-circle" />
+          <div class="profile-info pull-left">
+            <p>{{request.profile.name}}</p>
+            <p>{{request.profile.title}}</p>
+          </div>
+          <div class="tags pull-left">
+            <span class="tag complementary-background-color">EG</span>
+            <span class="tag complementary-background-color">UX</span>
+          </div>
+          <div class="req-detail pull-left">
+            <span>{{request.when}}</span> |
+            <span>{{request.where}}</span>
+          </div>
+        </div>
+        <div class="req-msg">{{request.message}}</div>
+      </div>
+      <div class="status pull-right">
+        <div class="status-msg" ng-style="msgClass($index)">{{request.status}}</div>
+      </div>
+    </li>
+  </ul>
+</div>

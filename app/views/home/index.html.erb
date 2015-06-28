@@ -6,21 +6,21 @@
 <%= content_for :main do %>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <div id="logo"></div>
+        <div class="navbar-header" ng-controller="headerCtrl">
+          <div id="logo" ng-click="home()"></div>
         </div>
         <div class="navbar-collapse collapse" ng-controller="userCtrl">
           <ul class="nav navbar-nav navbar-right">
             <div class="user_signin_signup" ng-show="!is_user_sign_in">
-              <li><a href="#signin">Sign In</a></li>
-              <li><a href="#signup">Join</a></li>
+              <li style="display: inline;"><a href="#signin">Sign In</a></li>
+              <li style="display: inline;"><a href="#signup">Join</a></li>
             </div>
             <div class="user_profile_right" ng-show="is_user_sign_in">
               <div class="user_right" ng-click="profile()">
-                <i class="profile_right_image"></i>
+                <i class="profile_right_image" style="background-image: url('{{profile_image_url}}')"></i>
                 <span class="welcome-message">{{welcome_message()}}</span>
               </div>
-              <a class="signout-link">Sign Out</a>
+              <a class="signout-link" ng-click="signout()">Sign Out</a>
             </div>
           </ul>
           <form class="navbar-form navbar-right">
@@ -37,9 +37,10 @@
         <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
 
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#main">Home</a></li>
-            <li><a href="#signup">Team</a></li>
-            <li><a href="#">Requests</a></li>
+            <li class="active"><a href="#main">Dashboard</a></li>
+            <li><a href="#public">Public Invite</a></li>
+            <li><a href="#inbox/rcv">Request</a></li>
+            <li><a href="#team">Team</a></li>
           </ul>
 
         </div>
