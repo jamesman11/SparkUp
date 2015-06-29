@@ -88,8 +88,12 @@ myapp.filter('reverse', function() {
     };
 });
 
-function pinviteCtrl($scope){
-    $scope.public_invite = gon.all_request;
+function pinviteCtrl($scope, $modal, $http){
+    $http.post('/request/get_all').
+        success(function(data, status, headers, config) {
+            $scope.public_invite = data;
+        });
+    //$scope.public_invite = gon.all_request;
     $scope.interestTag = function(object){
         switch (object.who){
             case 'Human Resource': return 'HR';
@@ -99,7 +103,6 @@ function pinviteCtrl($scope){
             case 'Engineering Team': return 'DEV';
             default: return 'HR';
         }
-        console.log(object);
     };
 }
 function lhnController($scope) {

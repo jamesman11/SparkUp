@@ -53,4 +53,13 @@ class RequestController < BaseController
     end
     render :json => received_requests, :status => 200
   end
+
+  def get_all
+    all_requests = Request.all.map do |req|
+      profile = Profile.where(:user_id => req.owner_id).first
+      req_attributes = req.attributes
+      req_attributes.merge({:profile => profile.attributes})
+    end
+    render :json => all_requests, :status => 200
+  end
 end
