@@ -76,6 +76,12 @@ myapp.controller('lhnController', lhnController)
      .controller('searchCtrl', searchCtrl)
      .controller('PInvModalController', pInvModalController);
 
+myapp.filter('reverse', function() {
+    return function(items) {
+        return items.slice().reverse();
+    };
+});
+
 function lhnController($scope) {
     $scope.lnv = {
         arr: ['active', '', '', '']
@@ -387,12 +393,14 @@ function mainCtrl($scope, $location, $modal){
                 }
             },
             success: function(data){
+                $scope.public_invite.push(data);
                 $scope.invite.selected = {
                     team: '',
                     time: '',
                     loc: '',
                     message: ''
-                }
+                };
+                $scope.$apply();
                 alert('public invite sent!');
             }
         })

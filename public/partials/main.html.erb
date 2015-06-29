@@ -55,7 +55,7 @@
       </div>
     </div>
     <div id="monthly-bonus" class="div-container div-padding col-md-4 complementary-background-color">
-      <div class="title">Monthly Bonus</div>
+      <div class="title">Lunch with executive</div>
       <div class="assoc-card">
         <img ng-src="{{mthBonus.img}}" class="img-circle" />
         <div class="content">
@@ -93,7 +93,7 @@
     <div class="title">Public Invites</div>
     <div class="navigation-container">
       <div class="explore-container" ng-style="exploreContainerStyle()">
-        <div class="public-request" ng-repeat="invite in public_invite track by $index">
+        <div class="public-request" ng-repeat="invite in public_invite | reverse track by $index">
           <div class="info">
             <div class="pic-and-location">
               <img class="profile-pic" src="{{invite.profile.avatar}}">
