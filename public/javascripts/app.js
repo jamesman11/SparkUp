@@ -62,7 +62,8 @@ myapp.config(function($stateProvider, $urlRouterProvider){
         });
 
 });
-myapp.controller('signUpCtrl', signUpCtrl)
+myapp.controller('lhnController', lhnController)
+     .controller('signUpCtrl', signUpCtrl)
      .controller('signInCtrl',signInCtrl)
      .controller('headerCtrl',headerCtrl)
      .controller('mainCtrl', mainCtrl)
@@ -74,6 +75,19 @@ myapp.controller('signUpCtrl', signUpCtrl)
      .controller('teamCtrl',teamCtrl)
      .controller('searchCtrl', searchCtrl)
      .controller('PInvModalController', pInvModalController);
+
+function lhnController($scope) {
+    $scope.lnv = {
+        arr: ['active', '', '', '']
+    };
+
+    $scope.lnv.goActive = function(idx) {
+        for(var i=0; i<4; i++) {
+            var elem = (i == idx) ? 'active' : '';
+            $scope.lnv.arr[i] = elem;
+        }
+    }
+};
 
 function pInvModalController($scope, $modalInstance, invInfo, avlLoc) {
     $scope.pInv = {
@@ -385,6 +399,17 @@ function mainCtrl($scope, $location, $modal){
     };
 
     $scope.pInv = {};
+    $scope.sendInvite = function($index){
+        var invite = $scope.public_invite[$index];
+        var profile = invite.profile;
+        var person = {
+            img: profile.avatar,
+            pid: profile.user_id,
+            name: profile.name,
+            role: profile.title
+        }
+        $scope.pInv.initInvite(person);
+    };
     $scope.pInv.initInvite = function (pInfo) {
         var info = {};
 

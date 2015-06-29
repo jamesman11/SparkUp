@@ -12,6 +12,10 @@
     bottom: 24px;
 }
 
+#req-list .title{
+    list-style: none;
+    font-size: 19px;
+}
 #req-list .req-container .person-info img {
     width: 60px;
     height: 60px;

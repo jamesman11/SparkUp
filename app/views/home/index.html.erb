@@ -30,21 +30,20 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="lhnController">
 
       <div class="row row-offcanvas row-offcanvas-left" >
 
         <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
 
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#main">Dashboard</a></li>
-            <li><a href="#public">Public Invite</a></li>
-            <li><a href="#inbox/rcv">Request</a></li>
-            <li><a href="#team">Team</a></li>
+            <li ng-class="lnv.arr[0]"><a href="#main" ng-click="lnv.goActive(0)">Dashboard</a></li>
+            <li ng-class="lnv.arr[1]"><a href="#public" ng-click="lnv.goActive(1)">Public Invite</a></li>
+            <li ng-class="lnv.arr[2]"><a href="#inbox/rcv" ng-click="lnv.goActive(2)">Request</a></li>
+            <li ng-class="lnv.arr[3]"><a href="#team" ng-click="lnv.goActive(3)">Team</a></li>
           </ul>
 
         </div>
-
         <div class="col-sm-9 col-md-10 main" ui-view>
         </div>
       </div>

@@ -58,7 +58,7 @@ footer {
   padding-right: 20px;
   padding-left: 20px;
 }
-.nav-sidebar > .active > a {
+.nav>li>a:focus, .nav-sidebar > .active > a {
   color: #fff;
   background-color: #428bca;
 }
@@ -69,10 +69,10 @@ footer {
 #logo{
   background-image: url("/images/logo.png");
   background-size: cover;
-  width: 175px;
+  width: 177px;
   height: 52px;
   position: relative;
-  left: -12px;
+  left: -15px;
   cursor: pointer;
 }
 
@@ -97,6 +97,7 @@ footer {
 .primary-background-color, .main .primary-background-color {
   background-color: #19C0AB;
   color: #ffffff;
+  width: 100%;
 }
 
 .main .complementary-background-color {
@@ -378,7 +379,11 @@ div.title button:hover{
 
 
 div.modal-pInv {
-  width: 400px;
+  width: 384px;
+}
+
+div.modal-pInv .modal-body{
+  padding-top: 0px;
 }
 
 div.modal-pInv .modal-content {
@@ -389,11 +394,13 @@ div.modal-pInv .modal-content {
 
 div.modal-pInv .modal-header {
   border-bottom: none;
+  padding-bottom: 0px;
 }
 
 div.modal-pInv h4.modal-title {
   text-align: center;
   font-weight: bold;
+  font-size: 22px;
 }
 
 div.modal-pInv .just-joined-profile {
