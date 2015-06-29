@@ -228,11 +228,15 @@ function inboxController($scope, $location) {
     }
 };
 
-function requestSentController($scope) {
+function requestSentController($scope, $http) {
     var NO_RESPONSE_MESSAGE = "No Response Yet";
     var DECLINE_MESSAGE = "Declined";
     var ACCEPT_MESSAGE = "Accepted";
-    $scope.requests = gon.sent_requests;
+    $http.post('/request/get_sent_requests').
+        success(function(data, status, headers, config) {
+            $scope.requests = data;
+        });
+    //$scope.requests = gon.sent_requests;
     $scope.msgClass = function($index){
         var request = $scope.requests[$index];
         if(request.status == NO_RESPONSE_MESSAGE) return "";
@@ -240,11 +244,14 @@ function requestSentController($scope) {
     }
 };
 
-function requestReceivedController($scope) {
+function requestReceivedController($scope, $http) {
     var NO_RESPONSE_MESSAGE = "No Response Yet";
     var DECLINE_MESSAGE = "Declined";
     var ACCEPT_MESSAGE = "Accepted";
-    $scope.requests = gon.received_requests;
+    $http.post('/request/get_received_requests').
+        success(function(data, status, headers, config) {
+            $scope.requests = data;
+        });
     $scope.is_no_response = function($index){
         var request = $scope.requests[$index];
         return request.status == NO_RESPONSE_MESSAGE;
