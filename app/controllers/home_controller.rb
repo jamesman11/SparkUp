@@ -11,7 +11,8 @@ class HomeController < BaseController
         req_attributes.merge({:profile => profile.attributes})
       end
       gon.sent_requests = all_requests.where(:owner_id => current_user.id).map do |req|
-        profile = Profile.where(:user_id => req.owner_id).first
+        is_recipient_team = req.recipient_type == 0
+        profile = is_recipient_team ? Team.find(req.recipient_id) : Profile.find(req.recipient_id)
         req_attributes = req.attributes
         req_attributes.merge({:profile => profile.attributes})
       end

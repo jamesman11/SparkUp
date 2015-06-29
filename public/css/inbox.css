@@ -7,10 +7,6 @@
     margin-bottom: 20px;
 }
 
-#req-list {
-
-}
-
 #req-list .req-container .person-info img {
     width: 60px;
     height: 60px;
@@ -68,4 +64,11 @@
 
 #req-list .status .status-msg.accept{
     color: green;
+}
+
+.fromtomessage{
+    float: left;
+    color: #666363;
+    font-size: 22px;
+    margin-right: 7px;
 }

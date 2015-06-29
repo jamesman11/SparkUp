@@ -60,7 +60,7 @@ footer {
 }
 .nav>li>a:focus, .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #428bca;
+  background-color: #19C0AB;
 }
 
 /*
@@ -338,9 +338,9 @@ div.title button:hover{
 
 #lunch-invite textarea {
   resize: none;
-  height: 60px;
+  height: 75px;
   width: 220px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .user_profile_right{
@@ -409,7 +409,7 @@ div.modal-pInv .just-joined-profile {
 
 #bottom-div{
   border: 1px solid #ccc;
-  width: 1089px;
+  width: 1135px;
   height: 315px;
   margin-left: 0px;
   margin-top: 10px;
@@ -493,7 +493,7 @@ div.modal-pInv .just-joined-profile {
 }
 
 .navigation-container{
-  width: 1089px;
+  width: 1128px;
   overflow-x: auto;
   height: 255px;
 }

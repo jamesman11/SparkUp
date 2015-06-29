@@ -8,15 +8,15 @@ class RequestController < BaseController
     profile = Profile.where(:user_id => request.owner_id).first
     req_attributes = request.attributes
     req_attributes.merge!({:profile => profile.attributes})
-    mail = Mail.new do
-      from     'SparkUp <man123v1@163.com>'
-      to       'huaxianm@gmail.com'
-      subject  'You got a lunch request'
-      body     'I love you'
-    end
-
-    mail.delivery_method :sendmail
-    mail.deliver
+    # mail = Mail.new do
+    #   from     'SparkUp <man123v1@163.com>'
+    #   to       'huaxianm@gmail.com'
+    #   subject  'You got a lunch request'
+    #   body     'I love you'
+    # end
+    #
+    # mail.delivery_method :sendmail
+    # mail.deliver
 
     render :json => req_attributes, :status => 200
   end

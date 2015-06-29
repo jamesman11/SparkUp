@@ -104,12 +104,12 @@
               <div class="job-title">{{invite.profile.title}}</div>
               <div class="interest">
                 <span>interested team</span>
-                <span class="tag">HR</span>
+                <span class="tag">{{interestTag(invite)}}</span>
               </div>
             </div>
           </div>
           <div class="message">{{invite.message}}</div>
-          <div class="actions">
+          <div class="actions" ng-show="!checkSelf($index)">
             <button class="form-control btn" ng-click="sendInvite($index)">Let's Spark!</button>
           </div>
         </div>

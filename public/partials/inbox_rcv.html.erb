@@ -4,6 +4,7 @@
       <span ng-show="requests.length === 0">You haven't received any requests</span>
       <div class="req-container clearfix">
         <div class="person-info clearfix">
+          <span class="fromtomessage">From</span>
           <img ng-src={{request.profile.avatar}} class="img-circle" />
           <div class="profile-info pull-left">
             <p>{{request.profile.name}}</p>
@@ -15,7 +16,7 @@
           </div>
           <div class="req-detail pull-left">
             <span>{{request.when}}</span> |
-            <span>{{request.where}}</span>
+            <span>@{{request.where}}</span>
           </div>
         </div>
         <div class="req-msg">{{request.message}}</div>
@@ -25,7 +26,7 @@
           <button class="btn btn-primary" ng-click="accept($index)">Accept</button>
           <button class="btn btn-default" ng-click="removeRequest($index)">Not this time</button>
         </div>
-        <div class="status pull-right" style="top: 9px;" ng-show="!is_no_response($index)">
+        <div class="status pull-right" style="top: 9px;" ng-show="!is_no_response($index)}}">
           <div class="status-msg" ng-style="msgClass($index)">{{request.status}}</div>
         </div>
       </div>

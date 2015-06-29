@@ -95,17 +95,16 @@ function lhnController($scope) {
     }
 };
 
-function pInvModalController($scope, $modalInstance, invInfo, avlLoc) {
+function pInvModalController($scope, $modalInstance, invInfo, avlLoc, $moduleScope) {
     $scope.pInv = {
         info: {},
         avlLoc: avlLoc
     };
-
+    $scope.moduleScope = $moduleScope;
     $scope.pInv.info = invInfo;
 
     $scope.pInv.submitInvite = function(){
         var data = $scope.pInv.info;
-        console.log(data);
 
         $.ajax({
             url: "/request",
@@ -113,16 +112,19 @@ function pInvModalController($scope, $modalInstance, invInfo, avlLoc) {
             dataType: "json",
             data: {
                 data: {
-                    who: data.team,
+                    who: data.name,
                     when: data.time,
                     where: data.loc,
                     recipient_id: data.pid,
+                    recipient_type: data.teamInvite? '0' : '1',
                     message : data.message,
                     owner_id: gon.current_user.id
                 }
             },
             success: function(data){
-                console.log(data);
+                if($scope.moduleScope.public_invite){
+                    $scope.moduleScope.public_invite.push(data);
+                }
                 $scope.pInv.info = {};
                 $scope.pInv.closeModal();
             }
@@ -172,6 +174,10 @@ function searchCtrl($scope, $location, $stateParams,$http, $modal){
 
                 avlLoc: function(){
                     return avl_loc;
+                },
+
+                $moduleScope: function(){
+                    return $scope;
                 }
             }
         });
@@ -338,7 +344,22 @@ function mainCtrl($scope, $location, $modal){
             image_url: '/images/xiaozhao.jpg'
         }
     ];
-
+    $scope.checkSelf = function($index){
+        var invite = $scope.public_invite[$scope.public_invite.length - $index - 1];
+        var profile = invite.profile;
+        return gon.current_user.id === profile.user_id;
+    };
+    $scope.interestTag = function(object){
+        switch (object.who){
+            case 'Human Resource': return 'HR';
+            case 'User Experience': return 'UX';
+            case 'Global Product User Experience': return 'UX';
+            case 'Global Product Apparel Item Setup': return'IST';
+            case 'Engineering Team': return 'DEV';
+            default: return 'HR';
+        }
+      console.log(object);
+    };
     $scope.popular_team_list = [
         {
             name: 'User Experience',
@@ -373,22 +394,25 @@ function mainCtrl($scope, $location, $modal){
     $scope.mthBonus = {
         img: '/images/fernando.png',
         name: 'Fernando Madeira',
-        role: 'President & CEO',
+        role: 'President & CEO of walmart.com',
         intro: 'I am one of the judge of Walmart Hack day',
-        pid: 3
+        pid: 4
     };
     $scope.submitInvite = function(){
         var data = $scope.invite.selected;
+        var team = _.find($scope.invite.avl_teams, function(team){ return team.name === $scope.invite.selected.team});
         $.ajax({
             url: "/request",
             type: "POST",
             dataType: "json",
             data: {
                 data: {
-                    who: data.team,
+                    who: team.name,
                     when: data.time,
                     where: data.loc,
                     message : data.message,
+                    recipient_id: team.id,
+                    recipient_type: 0,
                     owner_id: gon.current_user.id
                 }
             },
@@ -408,13 +432,14 @@ function mainCtrl($scope, $location, $modal){
 
     $scope.pInv = {};
     $scope.sendInvite = function($index){
-        var invite = $scope.public_invite[$index];
+        var invite = $scope.public_invite[$scope.public_invite.length - $index - 1];
         var profile = invite.profile;
         var person = {
             img: profile.avatar,
             pid: profile.user_id,
             name: profile.name,
-            role: profile.title
+            role: profile.title,
+            teamInvite: false
         }
         $scope.pInv.initInvite(person);
     };
@@ -425,6 +450,7 @@ function mainCtrl($scope, $location, $modal){
         info.pid = pInfo.pid;
         info.name = pInfo.name;
         info.role = pInfo.role;
+        info.teamInvite = pInfo.teamInvite;
 
         $modal.open({
             animation: $scope.animationsEnabled,
@@ -438,6 +464,10 @@ function mainCtrl($scope, $location, $modal){
 
                 avlLoc: function(){
                     return $scope.invite.avl_loc;
+                },
+
+                $moduleScope : function(){
+                    return $scope;
                 }
             }
         });
