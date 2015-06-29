@@ -4,7 +4,7 @@ class RequestController < BaseController
   def create
     request_data = params[:data].symbolize_keys
     request_data.merge!({ :status => "No Response Yet", :what => "lunch"})
-    Request.create(request_data)
+    request = Request.create(request_data)
     # mail = Mail.new do
     #   from     'SparkUp <huaxianm@gmail.com>'
     #   to       'ciciliuchengchen@gmail.com'
@@ -15,7 +15,7 @@ class RequestController < BaseController
     # mail.delivery_method :sendmail
     # mail.deliver
 
-    render :json => true
+    render :json => request, :status => 200
   end
 
   def accept
