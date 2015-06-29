@@ -104,7 +104,7 @@ function pInvModalController($scope, $modalInstance, invInfo, avlLoc) {
             success: function(data){
                 console.log(data);
                 $scope.pInv.info = {};
-                $scope.pInv.closeModal;
+                $scope.pInv.closeModal();
             }
         })
     };
@@ -114,7 +114,7 @@ function pInvModalController($scope, $modalInstance, invInfo, avlLoc) {
     }
 }
 
-function searchCtrl($scope, $location, $stateParams,$http){
+function searchCtrl($scope, $location, $stateParams,$http, $modal){
     var text = $stateParams.text;
     $http.post('/user/search', {text:text}).
         success(function(data, status, headers, config) {
@@ -123,7 +123,40 @@ function searchCtrl($scope, $location, $stateParams,$http){
     $scope.init = function(data){
         $scope.teams = data.teams;
         $scope.profiles = data.profiles;
+    };
+    $scope.accept = function(invitee, teamInvite) {
+        var avl_loc = [
+            '950 Elm San Bruno',
+            '850 Cherry San Bruno',
+            '640 California Sunnyvale',
+            '860 California Sunnyvale'
+        ];
+
+        var info = {};
+
+        info.teamInvite = teamInvite;
+        info.img = invitee.avatar;
+        info.pid = invitee.id;
+        info.name = invitee.name;
+        info.role = invitee.title;
+
+        $modal.open({
+            animation: 'none',
+            templateUrl: '/partials/pinvite-modal.html.erb',
+            controller: pInvModalController,
+            size: 'pInv',
+            resolve: {
+                invInfo: function () {
+                    return info;
+                },
+
+                avlLoc: function(){
+                    return avl_loc;
+                }
+            }
+        });
     }
+
 }
 function teamCtrl($scope, $location){
     $scope.teams = gon.teams;
