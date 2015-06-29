@@ -36,6 +36,11 @@ myapp.config(function($stateProvider, $urlRouterProvider){
             templateUrl: "partials/search.html.erb",
             controller: searchCtrl
         })
+        .state('publicInvite', {
+            url: "/publicInvite",
+            templateUrl: "partials/publicInvite.html.erb",
+            controller: pinviteCtrl
+        })
         .state('inbox', {
             url: "/inbox",
             abstract: true,
@@ -74,7 +79,8 @@ myapp.controller('lhnController', lhnController)
      .controller('RequestReceivedController', requestReceivedController)
      .controller('teamCtrl',teamCtrl)
      .controller('searchCtrl', searchCtrl)
-     .controller('PInvModalController', pInvModalController);
+     .controller('PInvModalController', pInvModalController)
+     .controller('pinviteCtrl', pinviteCtrl);
 
 myapp.filter('reverse', function() {
     return function(items) {
@@ -82,6 +88,20 @@ myapp.filter('reverse', function() {
     };
 });
 
+function pinviteCtrl($scope){
+    $scope.public_invite = gon.all_request;
+    $scope.interestTag = function(object){
+        switch (object.who){
+            case 'Human Resource': return 'HR';
+            case 'User Experience': return 'UX';
+            case 'Global Product User Experience': return 'UX';
+            case 'Global Product Apparel Item Setup': return'IST';
+            case 'Engineering Team': return 'DEV';
+            default: return 'HR';
+        }
+        console.log(object);
+    };
+}
 function lhnController($scope) {
     $scope.lnv = {
         arr: ['active', '', '', '']

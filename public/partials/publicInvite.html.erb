@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="title" style="background-color: #f7c15e;padding: 5px;left: 10px;position: relative;width: 164px;">Public Invites</div>
+  <div class="explore-container" style="width: 1173px;">
+    <div class="public-request" ng-repeat="invite in public_invite track by $index">
+      <div class="info">
+        <div class="pic-and-location">
+          <img class="profile-pic" src="{{invite.profile.avatar}}">
+          <span class="location">@{{invite.profile.location}}</span>
+        </div>
+        <div class="personal-info">
+          <div class="name">{{invite.profile.name}}</div>
+          <div class="job-title">{{invite.profile.title}}</div>
+          <div class="interest">
+            <span>interested team</span>
+            <span class="tag">{{interestTag(invite)}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="message">{{invite.message}}</div>
+      <div class="actions">
+        <button class="form-control btn" ng-click="sendInvite($index)">Let's Spark!</button>
+      </div>
+    </div>
+  </div>
+</div>
