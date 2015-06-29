@@ -104,6 +104,53 @@ function pinviteCtrl($scope, $modal, $http){
             default: return 'HR';
         }
     };
+
+    $scope.sendInvite = function($index){
+        var invite = $scope.public_invite[$index];
+        var profile = invite.profile;
+        var person = {
+            img: profile.avatar,
+            pid: profile.id,
+            name: profile.name,
+            role: profile.title,
+            teamInvite: false
+        }
+        $scope.initInvite(person);
+    };
+    $scope.initInvite = function (pInfo) {
+        var info = {};
+        var avl_loc = [
+            '950 Elm San Bruno',
+            '850 Cherry San Bruno',
+            '640 California Sunnyvale',
+            '860 California Sunnyvale'
+        ];
+        info.img = pInfo.img;
+        info.pid = pInfo.pid;
+        info.name = pInfo.name;
+        info.role = pInfo.role;
+        info.teamInvite = pInfo.teamInvite;
+
+        $modal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: '/partials/pinvite-modal.html.erb',
+            controller: pInvModalController,
+            size: 'pInv',
+            resolve: {
+                invInfo: function () {
+                    return info;
+                },
+
+                avlLoc: function(){
+                    return avl_loc;
+                },
+
+                $moduleScope : function(){
+                    return $scope;
+                }
+            }
+        });
+    };
 }
 function lhnController($scope) {
     $scope.lnv = {
