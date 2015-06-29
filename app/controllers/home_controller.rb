@@ -15,6 +15,11 @@ class HomeController < BaseController
         req_attributes = req.attributes
         req_attributes.merge({:profile => profile.attributes})
       end
+      gon.received_requests = all_requests.where.not(:owner_id => current_user.id).map do |req|
+        profile = Profile.where(:user_id => req.owner_id).first
+        req_attributes = req.attributes
+        req_attributes.merge({:profile => profile.attributes})
+      end
     end
   end
 end

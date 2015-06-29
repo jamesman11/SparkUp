@@ -165,7 +165,7 @@ function requestReceivedController($scope) {
     var NO_RESPONSE_MESSAGE = "No Response Yet";
     var DECLINE_MESSAGE = "Declined";
     var ACCEPT_MESSAGE = "Accepted";
-    $scope.requests = gon.all_request;
+    $scope.requests = gon.received_requests;
     $scope.is_no_response = function($index){
         var request = $scope.requests[$index];
         return request.status == NO_RESPONSE_MESSAGE;
@@ -258,6 +258,11 @@ function userCtrl($scope, $location, $state){
     };
 }
 function mainCtrl($scope, $location, $modal){
+    $scope.public_invite = gon.all_request;
+    $scope.exploreContainerStyle = function(){
+      var width = $scope.public_invite.length * 391;
+        return {"width": width + "px" }
+    };
     $scope.just_joined_profile_list = [
         {
             name: 'James Man',

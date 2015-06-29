@@ -82,7 +82,7 @@ footer {
 .main {
   padding: 20px;
   background-color: #fff;
-  height: 745px;
+  height: auto;
 }
 @media (min-width: 768px) {
   .main {
@@ -404,7 +404,7 @@ div.modal-pInv .just-joined-profile {
 #bottom-div{
   border: 1px solid #ccc;
   width: 1089px;
-  height: 300px;
+  height: 315px;
   margin-left: 0px;
 }
 
@@ -413,5 +413,91 @@ div.modal-pInv .just-joined-profile {
   padding: 5px;
   left: 10px;
   position: relative;
+  width: 164px;
 }
 
+.public-request{
+  padding: 10px;
+  width: 381px;
+  height: 232px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  position: relative;
+  float: left;
+}
+.public-request .pic-and-location{
+  width: 102px;
+  text-align: center;
+  float: left;
+}
+.public-request .personal-info{
+  float: left;
+  position: relative;
+  top: 13px;
+  left: 10px;
+}
+
+.public-request .personal-info .name{
+  font-size: 24px;
+}
+.public-request .personal-info .job-title{
+  font-size: 17px;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.public-request .personal-info .interest{
+  color: #f7c15e;
+  position: relative;
+  top: 3px;
+}
+
+.public-request .personal-info .interest .tag{
+  padding: 6px;
+  border-radius: 55px;
+  color: #fff;
+  background-color: #f7c15e;
+}
+.public-request .pic-and-location .location{
+  color: #0088cc;
+  position: relative;
+  top: 3px;
+}
+.public-request .profile-pic{
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+
+.public-request .message{
+  position: absolute;
+  width: 356px;
+  /* top: 20px; */
+  top: 117px;
+  font-size: 16px;
+  color: #767272;
+  height: 65px;
+  overflow: hidden;
+}
+
+.explore-container{
+  height: 217px;
+}
+
+.navigation-container{
+  width: 1089px;
+  overflow-x: auto;
+}
+
+.public-request .actions{
+  position: absolute;
+  top: 190px;
+  width: 295px;
+  left: 40px;
+}
+
+.public-request .actions button{
+  background-color: #19C0AB;
+  color: #ffffff;
+}
