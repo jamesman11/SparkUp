@@ -2,8 +2,8 @@
 <div>
   <ul id="req-list" class="list-group">
     <li class="title">Matched Profiles</li>
+    <li ng-show="profiles.length === 0">No people matched found</li>
     <li class="list-group-item req-item" ng-repeat="profile in profiles track by $index">
-      <span ng-show="profiles.length === 0">You haven't received any requests</span>
       <div class="req-container clearfix">
         <div class="person-info clearfix">
           <img ng-src={{profile.avatar}} class="img-circle" />
@@ -26,8 +26,8 @@
   </ul>
   <ul id="req-list" class="list-group">
     <li class="title">Matched Teams</li>
+    <li ng-show="teams.length === 0">No team matched found</li>
     <li class="list-group-item req-item" ng-repeat="team in teams track by $index">
-      <span ng-show="teams.length === 0">You haven't received any requests</span>
       <div class="req-container clearfix">
         <div class="person-info clearfix">
           <img ng-src="/images/walmart.png" class="img-circle" />

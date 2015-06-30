@@ -312,6 +312,7 @@ function requestReceivedController($scope, $http) {
     }
     $scope.removeRequest = function($index){
         var request = $scope.requests[$index];
+        //request.status = DECLINE_MESSAGE;
         $.ajax({
             url: "request/decline/" + request.id,
             type: "POST",
@@ -323,6 +324,7 @@ function requestReceivedController($scope, $http) {
     };
     $scope.accept = function($index){
         var request = $scope.requests[$index];
+        //request.status = ACCEPT_MESSAGE;
         $.ajax({
             url: "request/accept/" + request.id,
             type: "POST",
@@ -502,7 +504,6 @@ function mainCtrl($scope, $location, $modal){
                     message: ''
                 };
                 $scope.$apply();
-                alert('public invite sent!');
             }
         })
     };
