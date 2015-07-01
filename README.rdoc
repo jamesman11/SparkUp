@@ -1,6 +1,6 @@
-**What is SparkUp?**
+=== What is SparkUp?
 
-SparkUp is an internal lunch invite platform that allows all associates to meet people from different teams and backgrounds. Dedicated to Walmart Global Hackathon 2015.**Please note that we only have two days for this hackday project, so we may write shitty codes in order to get it done fast and pretty, I will do some code refactoring in the future**
+SparkUp is an internal lunch invite platform that allows all associates to meet people from different teams and backgrounds. Dedicated to Walmart Global Hackathon 2015. 
 
 * It exposes networking opportunity with associates that you don’t normally work with.
 
@@ -8,7 +8,7 @@ SparkUp is an internal lunch invite platform that allows all associates to meet 
 
 * it initiate dynamic conversation and create more sparks!.
 
-**Tech Stack:**
+=== Tech Stack
 * Ruby 2.0.0
 
 * Rails 4.2
@@ -17,4 +17,6 @@ SparkUp is an internal lunch invite platform that allows all associates to meet 
 
 * AngularJs UI-Router: v0.2.15, http://angular-ui.github.com/
 
-Created by James Man, Chengchen Liu, Xinxin Dai and Zhaochang He
+===== Please note that we only have two days for this hackday project, so we may write shitty codes in order to get it done fast and pretty, I will do some code refactoring in the future.
+
+===== Created by James Man, Chengchen Liu, Xinxin Dai and Zhaochang He, thanks guys, great teamwork.
