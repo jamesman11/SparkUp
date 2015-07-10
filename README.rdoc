@@ -19,18 +19,18 @@ SparkUp is an internal lunch invite platform that allows all associates to meet 
 * AngularJs UI-Router: v0.2.15, http://angular-ui.github.com/
 
 === Features Snapshots
-====dashboard
+====Dashboard
 {<img src="https://cloud.githubusercontent.com/assets/6962853/8445000/bfbae0ac-1f4c-11e5-9eaf-8e854a80fcc1.png">}[https://cloud.githubusercontent.com/assets/6962853/8445000/bfbae0ac-1f4c-11e5-9eaf-8e854a80fcc1.png]
 
-====requests
+====Requests
 {<img src="https://cloud.githubusercontent.com/assets/6962853/8444997/bfb82bdc-1f4c-11e5-810d-2e0827bdd7c8.png">}[https://cloud.githubusercontent.com/assets/6962853/8444997/bfb82bdc-1f4c-11e5-810d-2e0827bdd7c8.png]
 
-====invite
+====Invite
 {<img src="https://cloud.githubusercontent.com/assets/6962853/8444998/bfb8e126-1f4c-11e5-9cc3-bd52664a6e74.png">}[https://cloud.githubusercontent.com/assets/6962853/8444998/bfb8e126-1f4c-11e5-9cc3-bd52664a6e74.png]
 
-====public-invites
+====Public-invites
 {<img src="https://cloud.githubusercontent.com/assets/6962853/8444999/bfb9320c-1f4c-11e5-8365-c916c3f928d8.png">}[https://cloud.githubusercontent.com/assets/6962853/8444999/bfb9320c-1f4c-11e5-8365-c916c3f928d8.png]
 
-===== Please note that we only have two days for this hackday project, so we may write shitty codes in order to get it done fast and pretty, I will do some code refactoring in the future.
+===== Please note that we only have two days for this hackday project, so we may write crappy codes in order to get it done fast and pretty, I will do some code refactoring in the future.
 
 ===== Created by James Man, Chengchen Liu, Xinxin Dai and Zhaochang He, thanks guys, great teamwork.
